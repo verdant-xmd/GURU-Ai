@@ -101,25 +101,8 @@ async function start(file) {
   const pluginsFolder = path.join(path.dirname(currentFilePath), 'plugins')
 
   fs.readdir(pluginsFolder, async (err, files) => {
-    if (err) {
-      console.error(chalk.red(`Error reading plugins folder: ${err}`))
-      return
-    }
-    console.log(chalk.yellow(`Installed ${files.length} plugins`))
 
-    try {
-      const { default: baileys } = await import('@whiskeysockets/baileys')
-      const version = (await baileys.fetchLatestBaileysVersion()).version
-      console.log(chalk.yellow(`Using Baileys version ${version}`))
-    } catch (e) {
-      console.error(chalk.red(' Baileys library is not installed'))
-    }
-  })
-}
-
-start('Guru.js')
-
-process.on('unhandledRejection', () => {
+    ', () => {
   console.error(chalk.red(`Unhandled promise rejection. Bot will restart...`))
   start('Guru.js')
 })
